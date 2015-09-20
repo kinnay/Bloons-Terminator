@@ -93,6 +93,32 @@ class DISCONNECT(Command):
     def help(self):
         self.say('Makes me disconnect. You\'ll receive a win by default.')
 
+class SAY(Command):
+    def execute(self,args):
+        if not args:
+            self.help()
+        else:
+            self.say(' '.join(args))
+
+    def help(self):
+        self.say("Makes me say something in the chat.")
+        self.say("Usage: /say <message>")
+        self.say("Example: /say hello")
+
+class SETLIVES(Command):
+    def execute(self,args):
+        if not args:
+            self.help()
+        else:
+            try: self.client.lives = int(args[0])
+            except ValueError:
+                self.say(args[0]+' is not a valid number')
+
+    def help(self):
+        self.say("Change my amount of lives.")
+        self.say("Usage: /setlives <number>")
+        self.say("Example: /setlives 99")
+
 class STARTROUND(Command):
     def execute(self,args):
         self.send('ImReadyToStartARound')
@@ -117,7 +143,7 @@ class HELP(Command):
             cmd.help()
 
     def sendGeneralHelp(self):
-        self.say('/disconnect /surrender /startround /bloonwave')
+        self.say('/disconnect /surrender /startround /bloonwave /setlives /say')
         self.say('Say /help <command> for a more detailed explanation of the command')
         self.say('Example: /help startround')
 
@@ -189,7 +215,7 @@ class GameClient(Client):
             command = getCommand(cmd)
             command.execute(args)
         #This is a common mistake
-        elif msg in ['help','disconnect','surrender','startround','bloonwave']:
+        elif msg in ['help','disconnect','surrender','startround','bloonwave','setlives','say']:
             self.sendChat("Commands start with a /. Did you mean /"+msg+" ?")
 
     def chatStart(self):
@@ -246,7 +272,7 @@ class MenuClient(Client):
         print 'Connecting...'
         self.send('Hello,'+VERSION)
         self.say('FindMeAQuickBattle',None,0)
-        #self.say('FindMyCustomBattle','1716407060')
+        #self.say('FindMyCustomBattle','1656934553')
 
     def say(self,msg,p2,p3=-1):
         if p2 == None:
@@ -273,11 +299,11 @@ class MenuClient(Client):
 
     def getPlayerInfo(self):
         #Connect with an account that doesn't exist
-        id = '123457' #nkid of the imaginary account
+        id = '123458' #nkid of the imaginary account
         name = 'The Bloons Terminator' #username
         battleScore = '100000'
         _71 = '0'
-        _2Q = 'http://rhcafe.us.to/img/nopreview.png' #The profile picture
+        _2Q = 'http://www.mariowiki.com/images/1/17/MP9_Select_Kamek.png' #The profile picture
         return id+','+name+','+battleScore+','+_71+','+_2Q
 
 client = MenuClient('battlesmain.ninjakiwi.com',4480)
