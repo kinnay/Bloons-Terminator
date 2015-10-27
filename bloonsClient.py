@@ -28,7 +28,7 @@ official policies, either expressed or implied, of Yannik Marchand.
 import socket, struct
 import zlib,base64
 
-VERSION = "999999.09"
+Version = "999999.09"
 
 class Command:
     def __init__(self):
@@ -270,14 +270,14 @@ class GameClient(Client):
 class MenuClient(Client):
     def started(self):
         print 'Connecting...'
-        self.send('Hello,'+VERSION)
+        self.send('Hello,'+Version)
         self.say('FindMeAQuickBattle',None,0)
         #self.say('FindMyCustomBattle','1656934553')
 
     def say(self,msg,p2,p3=-1):
         if p2 == None:
             p2 = ''
-        self.send(msg+','+VERSION+','+p2+','+str(p3))
+        self.send(msg+','+Version+','+p2+','+str(p3))
 
     def receive(self,msg,args):
         if msg == 'GimmeUrPlayerInfo':
