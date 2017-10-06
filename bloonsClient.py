@@ -99,7 +99,7 @@ class DISCONNECT(Command):
 		self.client.running = False
 
 	def help(self):
-		self.say("Makes me disconnect. You\"ll receive a win by default.")
+		self.say("Makes me disconnect. You'll receive a win by default.")
 
 class SAY(Command):
 	def execute(self,args):
@@ -140,7 +140,7 @@ class SURRENDER(Command):
 		self.client.running = False
 
 	def help(self):
-		self.say("Makes me surrender. You\"ll receive a win.")
+		self.say("Makes me surrender. You'll receive a win.")
 
 class HELP(Command):
 	def execute(self,args):
@@ -229,7 +229,7 @@ class GameClient(Client):
 	def chatStart(self):
 		if not self.chatStarted:
 			print "Game started"
-			self.sendChat("Hello, I\"m the Bloons Terminator")
+			self.sendChat("Hello, I'm the Bloons Terminator")
 			self.sendChat("You can command me through the chat")
 			self.sendChat("Say /help for a list of commands")
 			self.chatStarted = 1
