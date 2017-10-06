@@ -280,8 +280,8 @@ class MenuClient(Client):
 	def started(self):
 		print "Connecting..."
 		self.send("Hello,"+Version)
-		#self.say("FindMeAQuickBattle",None,0)
-		self.say("FindMyCustomBattle","342098105")
+		self.say("FindMeAQuickBattle",None,0)
+		#self.say("FindMyCustomBattle","342098105")
 
 	def say(self,msg,p2,p3=-1):
 		if p2 == None:
